@@ -1,51 +1,34 @@
-Summary:	-
-Summary(pl):	-
-Name:		-
-Version:	-
-Release:	-
-Epoch:		-
-License:	- (enter GPL/LGPL/BSD/BSD-like/other license name here)
-Group:		-
-Vendor:		-
-Icon:		-
-Source0:	%{name}-%{version}.tar.gz
-Source1:	-
+Summary:	exteremelly fast dynamic libraries in C
+Summary(pl):	ekstremalnie szybkie dynamiczne tablice w C
+Name:		judy
+Version:	0initial
+Release:	0.1
+License:	LGPL
+Group:		Libraries
+Vendor:		Doug Baskins for Hewlett-Packard
+Source0:	http://prdownloads.sourceforge.net/judy/Judy-initial_LGPL.src.tar.gz
 Patch0:		-
-URL:		-
-BuildRequires:	-
-PreReq:		-
-Requires:	-
-Requires(pre,post):	-
-Requires(preun):	-
-Requires(postun):	-
-Provides:	-
-Obsoletes:	-
-Conflicts:	-
+URL:		http://www.sourcejudy.com/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 
 %description -l pl
 
-%package subpackage
+%package devel
 Summary:	-
 Summary(pl):	-
 Group:		-
 
-%description subpackage
+%description devel
 
-%description subpackage -l pl
+%description devel -l pl
 
 %prep
-%setup -q -n %{name}-%{version}.orig -a 1
+%setup -q -n Judy-initial_LGPL
 %patch0 -p1
 
 %build
-aclocal
-%{__autoconf}
-autoheader
-%{__automake}
-%configure
 %{__make}
 
 %install
@@ -57,10 +40,6 @@ install -d $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
-
-%preun
-
 %post
 
 %postun
@@ -71,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 
-%files subpackage
+%files devel
 %defattr(644,root,root,755)
 %doc extras/*.gz
 %{_datadir}/%{name}-ext
