@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/Judy.h
 %dir %{_examplesdir}/%{name}-%{version}
-%{_examplesdir}/%{name}-%{version}/[^r]*
+%{_examplesdir}/%{name}-%{version}/[!r]*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/run_demo
 
 %files static
