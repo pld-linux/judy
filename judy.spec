@@ -7,6 +7,7 @@ License:	LGPL
 Group:		Libraries
 Vendor:		Doug Baskins for Hewlett-Packard
 Source0:	http://dl.sourceforge.net/judy/Judy-initial_LGPL.src.tar.gz
+# Source0-md5:	7ca6ca87a8fca531a0a4b505f51296d4
 URL:		http://judy.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
