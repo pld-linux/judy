@@ -2,7 +2,7 @@ Summary:	Exteremelly fast dynamic libraries in C
 Summary(pl):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	0initial
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Vendor:		Doug Baskins for Hewlett-Packard
@@ -23,7 +23,7 @@ dynamiczne tablice w C.
 Summary:	Development files for Judy
 Summary(pl):	Pliki nag³ówkowe dla Judy
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Documentation and header files needed to compile programs using Judy.
@@ -34,9 +34,9 @@ Judy.
 
 %package static
 Summary:	Judy static libraries
-Summary(pl):	biblioteki statyczne Judy
+Summary(pl):	Biblioteki statyczne Judy
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Judy static libraries.
@@ -52,7 +52,8 @@ Biblioteki statyczne Judy.
 # this is not autoconf; touch it and you're gonna die
 ./configure -f product
 %{__make} \
-	DELDIR_LIB=src/linux_ia32/product/deliver%{_libdir}
+	LD="%{__cc}" \
+	DELDIR_LIB=src/linux_ia32/product/deliver%{_libdir} \
 	EXTCCOPTS="%{rpmcflags}"
 
 %install
@@ -62,7 +63,7 @@ install -d $RPM_BUILD_ROOT
 mv src/linux_ia32/product/deliver%{_datadir}/doc/Judy .
 rm Judy/COPYRIGHT
 
-cp -r src/linux_ia32/product/deliver/. $RPM_BUILD_ROOT/
+cp -r src/linux_ia32/product/deliver/* $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 install Judy/demo/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -75,17 +76,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc Judy/README
 %attr(755,root,root) %{_libdir}/*.so
 
 %files devel
 %defattr(644,root,root,755)
-%doc Judy/*
-%{_mandir}/man3/*
+%doc doc/int/*.pdf
 %{_includedir}/Judy.h
+%{_mandir}/man3/*
 %dir %{_examplesdir}/%{name}-%{version}
 %{_examplesdir}/%{name}-%{version}/[!r]*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/run_demo
 
 %files static
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.a
+%{_libdir}/*.a
