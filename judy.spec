@@ -2,7 +2,7 @@ Summary:	Exteremelly fast dynamic libraries in C
 Summary(pl):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	0initial
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Vendor:		Doug Baskins for Hewlett-Packard
