@@ -1,5 +1,5 @@
-Summary:	exteremelly fast dynamic libraries in C
-Summary(pl):	ekstremalnie szybkie dynamiczne tablice w C
+Summary:	Exteremelly fast dynamic libraries in C
+Summary(pl):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	0initial
 Release:	1
@@ -11,48 +11,45 @@ URL:		http://www.sourcejudy.com/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-
 Judy is a library developed by HP for superfast dynamic arrays in C.
 
 %description -l pl
-
 Judy jest bibliotek± opracowan± przez HP implementuj±c± bardzo szybkie
 dynamiczne tablice w C.
 
 %package devel
-Summary:	development files for Judy
-Summary(pl):	pliki nag³ówkowe dla Judy
+Summary:	Development files for Judy
+Summary(pl):	Pliki nag³ówkowe dla Judy
 Group:		Development/Libraries
+Requires:	%{name} = %{version}
 
 %description devel
-
-Documentation and header files needed to compile programs using Judy
+Documentation and header files needed to compile programs using Judy.
 
 %description devel -l pl
-
 Dokumentacja i pliki nag³ówkowe potrzebne do kompilacji programów w
-Judy
+Judy.
 
 %package static
 Summary:	Judy static libraries
 Summary(pl):	biblioteki statyczne Judy
 Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
 
 %description static
 Judy static libraries.
 
 %description static -l pl
-
-Biblioteki statyczne dla Judy
+Biblioteki statyczne Judy.
 
 %prep
 %setup -q -n Judy-initial_LGPL
 
 %build
-
-# this is not autoconfig; touch it and you're gonna die
+# this is not autoconf; touch it and you're gonna die
 ./configure -f product
-%{__make}
+%{__make} \
+	EXTCCOPTS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -62,14 +59,14 @@ mv src/linux_ia32/product/deliver%{_datadir}/doc/Judy .
 rm Judy/COPYRIGHT
 
 cp -r src/linux_ia32/product/deliver/. $RPM_BUILD_ROOT/
-install -d $RPM_BUILD_ROOT/%{_datadir}/judy/
-mv Judy/demo $RPM_BUILD_ROOT/%{_datadir}/judy/
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install Judy/demo/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
-
 %postun	-p /sbin/ldconfig
 
 %files
@@ -79,9 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc Judy/*
-%attr(644,root,root) %{_mandir}/man3/*
-%attr(644,root,root) %{_includedir}/Judy.h
-%attr(755,root,root) %{_datadir}/judy
+%{_mandir}/man3/*
+%{_includedir}/Judy.h
+%dir %{_examplesdir}/%{name}-%{version}
+%{_examplesdir}/%{name}-%{version}/[^r]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/run_demo
 
 %files static
 %defattr(644,root,root,755)
