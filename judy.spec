@@ -52,6 +52,7 @@ Biblioteki statyczne Judy.
 # this is not autoconf; touch it and you're gonna die
 ./configure -f product
 %{__make} \
+	DELDIR_LIB=src/linux_ia32/product/deliver%{_libdir}
 	EXTCCOPTS="%{rpmcflags}"
 
 %install
