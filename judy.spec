@@ -1,14 +1,12 @@
 Summary:	Exteremelly fast dynamic libraries in C
 Summary(pl):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
-Version:	0initial
-Release:	4
+Version:	1.0.3
+Release:	1
 License:	LGPL
 Group:		Libraries
-Vendor:		Doug Baskins for Hewlett-Packard
-Source0:	http://dl.sourceforge.net/judy/Judy-initial_LGPL.src.tar.gz
-# Source0-md5:	7ca6ca87a8fca531a0a4b505f51296d4
-Patch0:		%{name}-gcc3.patch
+Source0:	http://dl.sourceforge.net/judy/Judy-%{version}.tar.gz
+# Source0-md5:	7d1271b1122ddc067f94f0f35a321bd6
 URL:		http://judy.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,28 +43,18 @@ Judy static libraries.
 Biblioteki statyczne Judy.
 
 %prep
-%setup -q -n Judy-initial_LGPL
-%patch0 -p1
+%setup -q -n Judy-%{version}
 
 %build
-# this is not autoconf; touch it and you're gonna die
-./configure -f product
-%{__make} \
-	LD="%{__cc}" \
-	DELDIR_LIB=src/linux_ia32/product/deliver%{_libdir} \
-	EXTCCOPTS="%{rpmcflags}"
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
-mv src/linux_ia32/product/deliver%{_datadir}/doc/Judy .
-rm Judy/COPYRIGHT
-
-cp -r src/linux_ia32/product/deliver/* $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-install Judy/demo/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,17 +64,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Judy/README
-%attr(755,root,root) %{_libdir}/*.so
+%doc doc/int/* AUTHORS ChangeLog
+%attr(755,root,root) %{_libdir}/*.so.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/int/*.pdf
+%attr(755,root,root) %{_libdir}/*.so
+%{_libdir}/*.la
 %{_includedir}/Judy.h
 %{_mandir}/man3/*
-%dir %{_examplesdir}/%{name}-%{version}
-%{_examplesdir}/%{name}-%{version}/[!r]*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/run_demo
 
 %files static
 %defattr(644,root,root,755)
