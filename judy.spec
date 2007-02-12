@@ -1,5 +1,5 @@
 Summary:	Exteremelly fast dynamic libraries in C
-Summary(pl):	Ekstremalnie szybkie dynamiczne tablice w C
+Summary(pl.UTF-8):   Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	1.0.3
 Release:	1
@@ -13,33 +13,33 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Judy is a library developed by HP for superfast dynamic arrays in C.
 
-%description -l pl
-Judy jest bibliotek± opracowan± przez HP implementuj±c± bardzo szybkie
+%description -l pl.UTF-8
+Judy jest bibliotekÄ… opracowanÄ… przez HP implementujÄ…cÄ… bardzo szybkie
 dynamiczne tablice w C.
 
 %package devel
 Summary:	Development files for Judy
-Summary(pl):	Pliki nag³ówkowe dla Judy
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla Judy
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Documentation and header files needed to compile programs using Judy.
 
-%description devel -l pl
-Dokumentacja i pliki nag³ówkowe potrzebne do kompilacji programów w
+%description devel -l pl.UTF-8
+Dokumentacja i pliki nagÅ‚Ã³wkowe potrzebne do kompilacji programÃ³w w
 Judy.
 
 %package static
 Summary:	Judy static libraries
-Summary(pl):	Biblioteki statyczne Judy
+Summary(pl.UTF-8):   Biblioteki statyczne Judy
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Judy static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Judy.
 
 %prep
