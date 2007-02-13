@@ -1,5 +1,5 @@
 Summary:	Exteremelly fast dynamic libraries in C
-Summary(pl.UTF-8):   Ekstremalnie szybkie dynamiczne tablice w C
+Summary(pl.UTF-8):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	1.0.3
 Release:	1
@@ -19,7 +19,7 @@ dynamiczne tablice w C.
 
 %package devel
 Summary:	Development files for Judy
-Summary(pl.UTF-8):   Pliki nagłówkowe dla Judy
+Summary(pl.UTF-8):	Pliki nagłówkowe dla Judy
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -32,7 +32,7 @@ Judy.
 
 %package static
 Summary:	Judy static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne Judy
+Summary(pl.UTF-8):	Biblioteki statyczne Judy
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
