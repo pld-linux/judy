@@ -47,6 +47,8 @@ Biblioteki statyczne Judy.
 
 %build
 %configure
+%{__make} -C tool
+%{__make} -C doc -j1
 %{__make}
 
 %install
