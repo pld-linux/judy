@@ -65,15 +65,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/int/* AUTHORS ChangeLog
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libJudy.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libJudy.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libJudy.so
+%{_libdir}/libJudy.la
 %{_includedir}/Judy.h
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/libJudy.a
