@@ -2,7 +2,7 @@ Summary:	Exteremelly fast dynamic libraries in C
 Summary(pl.UTF-8):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
 Version:	1.0.3
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/judy/Judy-%{version}.tar.gz
