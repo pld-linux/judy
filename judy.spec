@@ -1,12 +1,12 @@
 Summary:	Exteremelly fast dynamic libraries in C
 Summary(pl.UTF-8):	Ekstremalnie szybkie dynamiczne tablice w C
 Name:		judy
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/judy/Judy-%{version}.tar.gz
-# Source0-md5:	7b03d4b016115ca15a5a96368a76cd10
+Source0:	http://downloads.sourceforge.net/judy/Judy-%{version}.tar.gz
+# Source0-md5:	115a0d26302676e962ae2f70ec484a54
 URL:		http://judy.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -19,7 +19,7 @@ dynamiczne tablice w C.
 
 %package devel
 Summary:	Development files for Judy
-Summary(pl.UTF-8):	Pliki nagłówkowe dla Judy
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Judy
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -27,23 +27,23 @@ Requires:	%{name} = %{version}-%{release}
 Documentation and header files needed to compile programs using Judy.
 
 %description devel -l pl.UTF-8
-Dokumentacja i pliki nagłówkowe potrzebne do kompilacji programów w
-Judy.
+Dokumentacja i pliki nagłówkowe potrzebne do kompilacji programów
+wykorzystujących bibliotekę Judy.
 
 %package static
-Summary:	Judy static libraries
-Summary(pl.UTF-8):	Biblioteki statyczne Judy
+Summary:	Judy static library
+Summary(pl.UTF-8):	Biblioteka statyczna Judy
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Judy static libraries.
+Judy static library.
 
 %description static -l pl.UTF-8
-Biblioteki statyczne Judy.
+Biblioteka statyczna Judy.
 
 %prep
-%setup -q -n Judy-%{version}
+%setup -q
 
 %build
 %configure
@@ -66,16 +66,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/int/* AUTHORS ChangeLog
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/libJudy.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libJudy.so.1
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/int/*
 %attr(755,root,root) %{_libdir}/libJudy.so
 %{_libdir}/libJudy.la
 %{_includedir}/Judy.h
-%{_mandir}/man3/*
+%{_mandir}/man3/J1*.3*
+%{_mandir}/man3/JH*.3*
+%{_mandir}/man3/JL*.3*
+%{_mandir}/man3/JS*.3*
+%{_mandir}/man3/Judy*.3*
 
 %files static
 %defattr(644,root,root,755)
