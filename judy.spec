@@ -8,6 +8,7 @@ Group:		Libraries
 Source0:	http://downloads.sourceforge.net/judy/Judy-%{version}.tar.gz
 # Source0-md5:	115a0d26302676e962ae2f70ec484a54
 URL:		http://judy.sourceforge.net/
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,6 +47,7 @@ Biblioteka statyczna Judy.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure
 %{__make} -C tool
 %{__make} -C doc -j1
